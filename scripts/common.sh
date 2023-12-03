@@ -2,6 +2,13 @@
 
 bip39mem_home_dir="$HOME/.bip39mem"
 
+if [ ! -d $bip39mem_home_dir ]; then
+  if ! mkdir -m 700 $bip39mem_home_dir; then
+    echo "Failed to create home dir at $bip39mem_home_dir" >&2
+    exit 1
+  fi
+fi
+
 # Obtain filename of a seed-phtase
 get_phrase_file() {
   local name=$1
